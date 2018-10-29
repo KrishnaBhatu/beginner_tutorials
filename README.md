@@ -2,14 +2,14 @@
 
 # ROS Publisher and Subscriber Assignment
 
-###Description
+## Description
 
 This repository will cover the installation of ROS with basic implementation of 
 publisher and sbuscriber nodes where we'll have a publisher node(/talker) and a 
 subscriber node(/listner) and the transfer of data(string messages) will be over
 a topic(/chatter).
 
-###Overview
+## Overview
 
 One package is built(beginner_tutorials) which has two nodes which are defined
 in a C++ source code. The Publisher node publishes a string message on the topic 
@@ -20,7 +20,7 @@ the graphical representation.
 <img src="image/rosgraph.png" width="70%" height="70%"> 
 </p>
 
-###Dependencies
+## Dependencies
 
 - Ubuntu 16.04
 - ROS Kinetic
@@ -36,13 +36,13 @@ command
 $ echo $PYTHONPATH
 ```
 
-###Installation
+## Installation
 
 ROS Installation:
 Install the ROS Kinetic for Ubuntu and it's dependencies using the [link](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 
 
-###Build Instructions
+## Build Instructions
 
 Run the following commands for building and running the Publisher and Subscriber
 Nodes:
