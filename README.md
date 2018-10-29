@@ -28,12 +28,12 @@ the graphical representation.
 - catkin_pkg (if not already installed while installing ROS)
 For installing catkin_pkg and directly adding it to PYTHONPATH.
 ```
-$ pip install catkin_pkg
+pip install catkin_pkg
 ```
 Check if the catkin_pkg path is added to PYTHONPATH by using the following
 command
 ```
-$ echo $PYTHONPATH
+echo $PYTHONPATH
 ```
 
 ## Installation
@@ -47,15 +47,16 @@ Install the ROS Kinetic for Ubuntu and it's dependencies using the [link](http:/
 Run the following commands for building and running the Publisher and Subscriber
 Nodes:
 
-To clone the repository:
+To make the catkin workspace:
 ```
-$ git clone https://github.com/KrishnaBhatu/beginner_tutorials.git catkin_ws
-```
-
-To build the package:
-```
-$ cd catkin_ws
-$ catkin_make
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
+source devel/setup.bash
+cd src/
+git clone --recursive https://github.com/hrishikeshtawade04/beginner_tutorials.git
+cd ..
+catkin_make
 ```
 
 Now the package is ready to use:
@@ -63,18 +64,21 @@ We have to open up 3 terminals to run the master, publisher and subscriber nodes
 
 In first terminal
 ```
-$ roscore
+source /opt/ros/kinetic/setup.bash
+roscore
 ```
 In second terminal
 ```
-$ source devel/setup.bash
-$ rosrun beginner_tutorials beginner_tutorialsPublisher
+cd <catkin_ws path>
+source devel/setup.bash
+rosrun beginner_tutorials beginner_tutorialsPublisher
 ```
 
 In third terminal
 ```
-$ source devel/setup.bash
-$ rosrun beginner_tutorials beginner_tutorialsSubscriber
+cd <catkin_ws path>
+source devel/setup.bash
+rosrun beginner_tutorials beginner_tutorialsSubscriber
 ```
 Thus we will see the string messages which are published on the /chatter topic
 in the third terminal. 
