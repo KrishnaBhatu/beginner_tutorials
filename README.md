@@ -48,6 +48,7 @@ Run the following commands for building and running the Publisher and Subscriber
 Nodes:
 
 To make the catkin workspace:
+
 --skip command 2(sudo rm -R ~/catkin_ws) if no such folder is found
 
 ```
