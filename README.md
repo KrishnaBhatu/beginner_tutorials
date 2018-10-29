@@ -49,6 +49,7 @@ Nodes:
 
 To make the catkin workspace:
 ```
+sudo rm -R ~/catkin_ws (skip step is no such folder is found)
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 catkin_make
@@ -69,14 +70,14 @@ roscore
 ```
 In second terminal
 ```
-cd <catkin_ws path>
+cd ~/catkin_ws
 source devel/setup.bash
 rosrun beginner_tutorials beginner_tutorialsPublisher
 ```
 
 In third terminal
 ```
-cd <catkin_ws path>
+cd ~/catkin_ws
 source devel/setup.bash
 rosrun beginner_tutorials beginner_tutorialsSubscriber
 ```
