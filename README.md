@@ -48,8 +48,11 @@ Run the following commands for building and running the Publisher and Subscriber
 Nodes:
 
 To make the catkin workspace:
+--skip command 2(sudo rm -R ~/catkin_ws) if no such folder is found
+
 ```
-sudo rm -R ~/catkin_ws (skip this step if no such folder is found)
+source /opt/ros/kinetic/setup.bash
+sudo rm -R ~/catkin_ws 
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 catkin_make
