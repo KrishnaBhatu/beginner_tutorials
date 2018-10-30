@@ -42,7 +42,7 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 /**
- * @brief A callback function whoch is called when a new message arrives at 
+ * @brief A callback function which is called when a new message arrives at 
  *	  /chatter topic
  * @param msg It is a boost shared pointer that points to string message on 
  *	  /chatter topic
