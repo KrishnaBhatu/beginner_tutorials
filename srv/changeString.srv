@@ -1,0 +1,5 @@
+#request constants
+string a
+---
+#response constants
+string output
