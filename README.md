@@ -107,7 +107,7 @@ cd ~/catkin_ws
 source devel/setup.bash
 rosservice call changeString "<any new string the user wants to enter>"
 ```
-Now we observe that the published message changes to our new input string message.
+Now we observe that the published message changes to our new input string message on the listener terminal.
 
 # Run with using launch file
 Open up one terminal and follow the following steps:
@@ -128,6 +128,6 @@ cd ~/catkin_ws
 source devel/setup.bash
 rosservice call changeString "<any new string the user wants to enter>"
 ```
-Now we observe that the published message changes to our new input string message.
+Now we observe that the published message changes to our new input string message on the listener terminal.
  
 
