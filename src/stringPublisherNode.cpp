@@ -57,25 +57,23 @@ extern std::string str = "Hi This is Krishna";
  * @return bool It returns true is the service is called successfully
  */
 
-bool changeString ( beginner_tutorials::changeString::Request &req ,
-		    beginner_tutorials::changeString::Response &resp){
-	resp.output = str;
+bool changeString(beginner_tutorials::changeString::Request &req,
+                  beginner_tutorials::changeString::Response &resp) {
+        resp.output = str;
 	/**
 	  * Condition check for checking if the string passed to the service is 
 	  * same as the current publishing string
 	  */
-	if(resp.output == req.a){
-		ROS_ERROR_STREAM("Change in String Not Achieved");
-	}
-	else{
-		str = req.a;
-		ROS_WARN_STREAM("The String is Modified"); 
-	}
-	return true;
+        if (resp.output == req.a) {
+                ROS_ERROR_STREAM("Change in String Not Achieved");
+        } else {
+                str = req.a;
+                ROS_WARN_STREAM("The String is Modified");
+        }
+        return true;
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 /**
   * Initializer function for the node which sees the command line arguments and   
   * performs any ROS arguments and name remapping, where the third argument is
@@ -85,26 +83,20 @@ int main(int argc, char **argv)
 /**
   * Check if the node is successfully initialized
   */  
-  if(ros::isInitialized ()){
-  int frequencyDefault = 100;
-  int frequency;
+  if (ros::isInitialized()) {
+  int frequency = 100;
 /**
   * Check for the command line argument for the frequency parameter
   */  
   if (argc == 2) {
-    if (argv[1] == 0){
-    	ROS_WARN_STREAM("Frequency changed to non-zero value");
-    	int frequency = frequencyDefault;
-    }
-    else{
+    if (argv[1] == 0) {
+        ROS_WARN_STREAM("Frequency changed to non-zero value");
+    } else {
       /**
         * frequency parameter is assigned with the argument value
         */
-    	int frequency = atoi(argv[1]);
+        frequency = atoi(argv[1]);
     }
-  }
-  else{
-    frequency = frequencyDefault;
   }
 /**
   * This fully initializes the node.
@@ -115,7 +107,7 @@ int main(int argc, char **argv)
   * service name and the second argument is function name which defines the
   * service 
   */  
-  ros::ServiceServer server  = n.advertiseService("changeString" ,changeString);
+  ros::ServiceServer server  = n.advertiseService("changeString", changeString);
 /**
   * The advertise() function defines the role of node to the ROS master.
   * The first parameter is the topic on which the node publishes.
@@ -129,9 +121,8 @@ int main(int argc, char **argv)
 /**
   * LOG message to monitor the frequency of looping
   */  
-  ROS_DEBUG_STREAM("Frequency Check: %d" ;frequency);
-  while (ros::ok())
-  {
+  ROS_DEBUG_STREAM("Frequency Check: %d"; frequency);
+  while (ros::ok()) {
      /// Message object that has data to publish
      std_msgs::String msg;
      msg.data = str;
@@ -146,9 +137,8 @@ int main(int argc, char **argv)
       */
      loop_rate.sleep();
   }
-  }
-  else{
-	ROS_FATAL_STREAM("ROS is not initialized.");
+  } else {
+     ROS_FATAL_STREAM("ROS is not initialized.");
   }
   return 0;
- }
+}

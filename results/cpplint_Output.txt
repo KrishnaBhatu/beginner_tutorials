@@ -1,6 +1,9 @@
 Output in terminal
 $ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" )
-Done processing ./src/beginner_tutorials/src/stringPublisherNode.cpp
-Done processing ./src/beginner_tutorials/src/stringSubscriberNode.cpp
+./src/stringPublisherNode.cpp:60:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::changeString::Request &req  [runtime/references] [2]
+./src/stringPublisherNode.cpp:61:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::changeString::Response &resp  [runtime/references] [2]
+Done processing ./src/stringPublisherNode.cpp
+Done processing ./src/stringSubscriberNode.cpp
+Total errors found: 2
 
 
