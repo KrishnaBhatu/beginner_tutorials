@@ -65,7 +65,7 @@ cd ~/catkin_ws/
 catkin_make
 source devel/setup.bash
 cd src/
-git clone --recursive https://github.com/KrishnaBhatu/beginner_tutorials/tree/Week10_HW
+git clone -b Week10_HW https://github.com/KrishnaBhatu/beginner_tutorials.git
 cd ..
 catkin_make
 ```
