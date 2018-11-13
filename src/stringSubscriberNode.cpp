@@ -48,13 +48,11 @@
  *	  /chatter topic
  * @return void
  */
-void chatterCallback(const std_msgs::String::ConstPtr& msg)
-{
+void chatterCallback(const std_msgs::String::ConstPtr& msg) {
   ROS_INFO("Hey ROS: %s", msg->data.c_str());
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 /**
   * Initializer function for the node which sees the command line arguments and   
   * performs any ROS arguments and name remapping, where the third argument is

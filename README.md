@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-# ROS Publisher and Subscriber Assignment
+# ROS Beginners Tutorial
 
 ## Description
 
@@ -16,6 +16,12 @@ in a C++ source code. The Publisher node publishes a string message on the topic
 and the subscriber node reads the string message from that topic. Following is
 the graphical representation.
 
+One of the node has a service to change the string which is published which 
+depends on the input given by the user. Also, there is a launch file generated
+which acts as a script for firing up all the nodes mentioned in the script at
+once which frees us from opening the terminal one by one and input rosrun for
+individual nodes.
+ 
 <p align="center">
 <img src="image/rosgraph.png" width="70%" height="70%"> 
 </p>
@@ -52,19 +58,22 @@ To make the catkin workspace:
 --skip command 2(sudo rm -R ~/catkin_ws) if no such folder is found
 
 ```
-source /opt/ros/kinetic/setup.bash
-sudo rm -R ~/catkin_ws 
+
+sudo rm -R ~/catkin_ws
+source /opt/ros/kinetic/setup.bash 
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
-catkin_make
-source devel/setup.bash
 cd src/
-git clone --recursive https://github.com/KrishnaBhatu/beginner_tutorials.git
+git clone -b Week10_HW https://github.com/KrishnaBhatu/beginner_tutorials.git
 cd ..
 catkin_make
 ```
 
-Now the package is ready to use:
+Now the package is ready to use
+
+The above steps are same for bothe the methods (with and without launch files)
+
+# Run without using launch file
 We have to open up 3 terminals to run the master, publisher and subscriber nodes.
 
 In first terminal
@@ -86,5 +95,37 @@ source devel/setup.bash
 rosrun beginner_tutorials beginner_tutorialsSubscriber
 ```
 Thus we will see the string messages which are published on the /chatter topic
-in the third terminal. 
+in the third terminal.
+
+Now we can run the service to modify the string that is published by using the changeString  service.
+
+Open up a new terminal for  calling the service.(Press: ctrl+alt+T)
+
+```
+cd ~/catkin_ws
+source devel/setup.bash
+rosservice call changeString "<any new string the user wants to enter>"
+```
+Now we observe that the published message changes to our new input string message on the listener terminal.
+
+# Run with using launch file
+Open up one terminal and follow the following steps:
+
+```
+cd ~/catkin_ws
+source devel/setup.bash
+roslaunch beginner_tutorials changeString.launch frequency:=<integer value for frequency loop>
+```
+ 
+ The frequency parameter is optional.
+ Now we can see that all the nodes along with the roscore are fired up.
+ 
+ Now open up new terminal to call the service and follow the folowing instructions.
+ ```
+cd ~/catkin_ws
+source devel/setup.bash
+rosservice call changeString "<any new string the user wants to enter>"
+```
+Now we observe that the published message changes to our new input string message on the listener terminal.
+ 
 
