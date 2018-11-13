@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
   * Check for the command line argument for the frequency parameter
   */  
   if (argc == 2) {
-    if (argv[1] == 0) {
+    if (atoi(argv[1]) == 0) {
         ROS_WARN_STREAM("Frequency changed to non-zero value");
     } else {
       /**
