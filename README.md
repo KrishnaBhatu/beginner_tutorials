@@ -58,12 +58,11 @@ To make the catkin workspace:
 --skip command 2(sudo rm -R ~/catkin_ws) if no such folder is found
 
 ```
-source /opt/ros/kinetic/setup.bash
-sudo rm -R ~/catkin_ws 
+
+sudo rm -R ~/catkin_ws
+source /opt/ros/kinetic/setup.bash 
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
-catkin_make
-source devel/setup.bash
 cd src/
 git clone -b Week10_HW https://github.com/KrishnaBhatu/beginner_tutorials.git
 cd ..
@@ -114,7 +113,6 @@ Open up one terminal and follow the following steps:
 
 ```
 cd ~/catkin_ws
-catkin_make
 source devel/setup.bash
 roslaunch beginner_tutorials changeString.launch frequency:=<integer value for frequency loop>
 ```
