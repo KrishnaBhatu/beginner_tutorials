@@ -3,6 +3,10 @@
         	name="frequency"
 	        default = "10"
 	/>
+	<arg
+	        name="run_rosbag"
+	        default = "false"
+	/>
 	<node
 		pkg = "beginner_tutorials"
 		name = "talker"
@@ -16,6 +20,13 @@
 		type = "beginner_tutorialsSubscriber"
 		output = "screen"
 		launch-prefix="gnome-terminal --command"
+	/>
+	<node
+		pkg="rosbag"
+		name="record"
+		type="record"
+		args="--duration=15 chatter --output-name=$(find beginner_tutorials)/results/listenerRosBag.bag"
+		if="$(arg run_rosbag)"
 	/>
 </launch>
 
