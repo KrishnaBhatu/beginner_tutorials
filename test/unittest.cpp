@@ -62,7 +62,7 @@ TEST(TestSuit, testofService) {
           * The third parameter is the function called when there is message on topic. 
           */  
         ros::ServiceClient client = n.serviceClient
-                                <beginner_tutorials::changeStri("changeString");
+                                <beginner_tutorials::changeString>("changeString");
         /// set srv to be the object of service.
         beginner_tutorials::changeString srv;
         /// set the input text
