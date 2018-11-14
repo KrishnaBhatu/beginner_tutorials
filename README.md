@@ -203,7 +203,8 @@ $ roslaunch beginner_tutorials changeString.launch frequency:=<integer value for
 ```
 
 Now the .bag file can be used to playback the previous messages that were published by the talker in the following manner:
-
+Close all nodes (ctrl+c) and close all terminals
+Then,
 Open a one terminal
 ```
 roscore
