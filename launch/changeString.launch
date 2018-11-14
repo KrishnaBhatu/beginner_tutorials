@@ -25,7 +25,7 @@
 		pkg="rosbag"
 		name="record"
 		type="record"
-		args="--duration=15 chatter --output-name=$(find beginner_tutorials)/results/listenerRosBag.bag"
+		args="--duration=15 --all --output-name=$(find beginner_tutorials)/results/listenerRosBag.bag"
 		if="$(arg run_rosbag)"
 	/>
 </launch>
