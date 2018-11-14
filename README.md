@@ -73,7 +73,8 @@ Now the package is ready to use
 
 The above steps are same for bothe the methods (with and without launch files)
 
-# Run without using launch file
+# To Run without using launch file 
+This is for the basic Publisher Subscriber implementation
 We have to open up 3 terminals to run the master, publisher and subscriber nodes.
 
 In first terminal
@@ -98,7 +99,7 @@ Thus we will see the string messages which are published on the /chatter topic
 in the third terminal.
 
 Now we can run the service to modify the string that is published by using the changeString  service.
-
+The following is the implemetation of client server process.
 Open up a new terminal for  calling the service.(Press: ctrl+alt+T)
 
 ```
@@ -107,8 +108,9 @@ source devel/setup.bash
 rosservice call changeString "<any new string the user wants to enter>"
 ```
 Now we observe that the published message changes to our new input string message on the listener terminal.
+Close all terminals.
 
-# Run with using launch file
+# To Run with using launch file
 Open up one terminal and follow the following steps:
 
 ```
@@ -120,12 +122,102 @@ roslaunch beginner_tutorials changeString.launch frequency:=<integer value for f
  The frequency parameter is optional.
  Now we can see that all the nodes along with the roscore are fired up.
  
- Now open up new terminal to call the service and follow the folowing instructions.
+The following is the implemetation of client server process.
+Now open up new terminal to call the service and follow the folowing instructions.
  ```
 cd ~/catkin_ws
 source devel/setup.bash
 rosservice call changeString "<any new string the user wants to enter>"
 ```
 Now we observe that the published message changes to our new input string message on the listener terminal.
- 
+Close all terminals
+
+# Inspection of TF Frames
+For this session we have to keep the roslaunch command in the above section running.
+The transformation of the talk frame is broadcasted with respect to the world frame which can be 
+inspected by running the following commands.
+
+Following commands are run in a new terminal while the roslaunch command is already running in other terminal
+```
+source /opt/ros/kinetic/setup.bash
+rosrun tf tf_echo /world /talk
+```
+
+After running this command we can see the static transformation that are broadcasted as follows:
+```
+At time 1542168024.163
+- Translation: [10.000, 10.000, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, 0.707, 0.707]
+            in RPY (radian) [0.000, -0.000, 1.570]
+            in RPY (degree) [0.000, -0.000, 89.954]
+At time 1542168024.496
+- Translation: [10.000, 10.000, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, 0.707, 0.707]
+            in RPY (radian) [0.000, -0.000, 1.570]
+            in RPY (degree) [0.000, -0.000, 89.954]
+At time 1542168025.496
+```
+
+To visualize the frames we open up a new tab and run the following:
+```
+rosrun tf view_frames
+evince frames.pdf
+```
+Close all terminals
+# To Run ROS Test
+For this section no nodes can be running.(close all terinals)
+The following commands are used to run the unit test of our ROS package.
+```
+cd ~/catkin_ws
+source devel/setup.bash
+catkin_make run_tests_beginner_tutorials
+```
+The output of the folling command will be like the following
+```
+[ROSUNIT] Outputting test results to /home/kbhatu/catkin_ws/build/test_results/beginner_tutorials/rostest-test_unittest.xml
+[Testcase: testunittest] ... ok
+
+[ROSTEST]-----------------------------------------------------------------------
+
+[beginner_tutorials.rosunit-unittest/testofService][passed]
+
+SUMMARY
+ * RESULT: SUCCESS
+ * TESTS: 1
+ * ERRORS: 0
+ * FAILURES: 0
+
+rostest log file is in /home/kbhatu/.ros/log/rostest-kbhatu-HP-Pavilion-Notebook-30547.log
+-- run_tests.py: verify result "/home/kbhatu/catkin_ws/build/test_results/beginner_tutorials/rostest-test_unittest.xml"
+```
+
+#To Run the bag file
+The bag file is used to store the log data from the publisher in a .bag file.
+We can save log file by running the following commands by which the data published by the talker will be captured in the .bag file.
+
+Open a new terminal
+```
+$ cd ~/catkin_make
+$ source devel/setup.bash
+$ roslaunch beginner_tutorials changeString.launch frequency:=<integer value for frequency loop>  run_rosbag:=true
+```
+
+Now the .bag file can be used to playback the previous messages that were published by the talker in the following manner:
+
+Open a one terminal
+```
+roscore
+```
+Open another terminal(We will see our output in this terminal)
+```
+cd ~/catkin_ws
+source devel/setup.bash
+rosrun beginner_tutorials beginner_tutorialsSubscriber
+```
+Now we open another terminal and play the log file which will be listened by the listener node.
+```
+cd <path to repository>/results
+rosbag play listenerRosBag.bag
+```
+
 
