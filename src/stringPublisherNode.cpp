@@ -39,15 +39,18 @@
   *  Source code for publisher node that publishes to the /chatter topic
   *  and inputs that string message and it also has a service to change string.
   */
+#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/changeString.h"
 
 /**
-  * This is a global string that is modified.
+  * This is a structure for declaring global string.
   */ 
-extern std::string str = "Hi This is Krishna";
+struct globstring {
+  std::string str;
+}message;
 /**
  * @brief A change of string function which is called when a service is called 
  *        to change the publishing message
@@ -59,7 +62,7 @@ extern std::string str = "Hi This is Krishna";
 
 bool changeString(beginner_tutorials::changeString::Request &req,
                   beginner_tutorials::changeString::Response &resp) {
-        resp.output = str;
+        resp.output = message.str + " Doing Unit Testing";
 	/**
 	  * Condition check for checking if the string passed to the service is 
 	  * same as the current publishing string
@@ -67,7 +70,7 @@ bool changeString(beginner_tutorials::changeString::Request &req,
         if (resp.output == req.a) {
                 ROS_ERROR_STREAM("Change in String Not Achieved");
         } else {
-                str = req.a;
+                message.str = req.a;
                 ROS_WARN_STREAM("The String is Modified");
         }
         return true;
@@ -80,6 +83,7 @@ int main(int argc, char **argv) {
   * the name of the node. 
   */
   ros::init(argc, argv, "talker");
+  message.str = "Hi This is Krishna";
 /**
   * Check if the node is successfully initialized
   */  
@@ -115,6 +119,23 @@ int main(int argc, char **argv) {
   */  
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 /**
+  * Declaration of the implementation of the TransformBroadcaster provided by
+  * the tf package.
+  */  
+  tf::TransformBroadcaster br;
+/**
+  * Declaration of the transform object and declare the information for
+  * 3D transform.
+  */  
+  tf::Transform transform;
+  transform.setOrigin(tf::Vector3(10, 10, 0.0));
+  tf::Quaternion q;
+  q.setRPY(0, 0, (3.14/2));
+/**
+  * Set the Rotation.
+  */  
+  transform.setRotation(q);
+/**
   * Frequency at which it loops (10Hz)
   */  
   ros::Rate loop_rate(frequency);
@@ -123,9 +144,18 @@ int main(int argc, char **argv) {
   */  
   ROS_DEBUG_STREAM("Frequency Check: %d"; frequency);
   while (ros::ok()) {
+     /**
+       * The transformation information is sent where we have,
+       * First parameter: Transformation which was set above
+       * Second parameter: Timestamp to the transformation
+       * Third parameter: Name of the parent frame
+       * Fourth parameter: Name of child frame
+       */
+     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world",
+                                           "talk"));
      /// Message object that has data to publish
      std_msgs::String msg;
-     msg.data = str;
+     msg.data = message.str;
      /**
       *  The publish() function is used to send messages.
       */ 
