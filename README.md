@@ -55,7 +55,7 @@ Nodes:
 
 To make the catkin workspace:
 
---skip command 2(sudo rm -R ~/catkin_ws) if no such folder is found
+--skip command 1(sudo rm -R ~/catkin_ws) if no such folder is found
 
 ```
 
