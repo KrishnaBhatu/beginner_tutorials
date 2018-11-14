@@ -191,7 +191,7 @@ rostest log file is in /home/kbhatu/.ros/log/rostest-kbhatu-HP-Pavilion-Notebook
 -- run_tests.py: verify result "/home/kbhatu/catkin_ws/build/test_results/beginner_tutorials/rostest-test_unittest.xml"
 ```
 
-#To Run the bag file
+# To Run the bag file
 The bag file is used to store the log data from the publisher in a .bag file.
 We can save log file by running the following commands by which the data published by the talker will be captured in the .bag file.
 
