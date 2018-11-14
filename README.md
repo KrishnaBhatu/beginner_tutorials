@@ -64,7 +64,7 @@ source /opt/ros/kinetic/setup.bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 cd src/
-git clone -b Week10_HW https://github.com/KrishnaBhatu/beginner_tutorials.git
+git clone -b Week11_HW https://github.com/KrishnaBhatu/beginner_tutorials.git
 cd ..
 catkin_make
 ```
